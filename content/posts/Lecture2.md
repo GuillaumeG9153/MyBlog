@@ -8,7 +8,6 @@ tags = ["", ""]
 keywords = ["", ""]
 description = ""
 showFullContent = false
-draft:false
 +++
 # Lecture 4 :
 

@@ -1,4 +1,4 @@
-baseurl = "https://guillaumeg9153.github.io/MyBlog/"
+baseurl = "/"
 languageCode = "en-us"
 theme = "terminal"
 paginate = 5
@@ -8,7 +8,7 @@ publishDir = "docs"
   # dir name of your main content (default is `content/posts`).
   # the list of set content will show up on your index page (baseurl).
   #posts
-  contentTypeName = "docs"
+  contentTypeName = "posts"
 
   # ["orange", "blue", "red", "green", "pink"]
   themeColor = "red"
@@ -61,7 +61,7 @@ publishDir = "docs"
 
     [languages.en.params.logo]
       logoText = "Guillaume Grandineau blog"
-      logoHomeLink = "https://guillaumeg9153.github.io/MyBlog/"
+      logoHomeLink = "/"
 
     [languages.en.menu]
       #[[languages.en.menu.main]]

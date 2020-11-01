@@ -8,7 +8,6 @@ tags = ["", ""]
 keywords = ["", ""]
 description = ""
 showFullContent = false
-draft:false
 +++
 Here are my ideas about AR : 
 
