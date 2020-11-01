@@ -13,7 +13,7 @@ showFullContent = false
 In this Topic I will present you my Unity game named Floor is Lava 2k20. The game is separated in 4 rooms. 
 
 # Here is the first one : 
-![image info](/unity1.PNG)
+![image info](/MyBlog/unity1.PNG)
 
 This room is like a tutorial since it makes you understand that you need all collectibles in a room in order to remove the wall that is blocking you the access and that if you fall on the lava you respawn at the beginning of the zone. 
 
@@ -50,7 +50,7 @@ public class disableWall : MonoBehaviour
 # Second room : 
 
 
-![image info](/unity3.PNG)
+![image info](/MyBlog/unity3.PNG)
 In this room you still must collect all the collectibles to pass the wall but here there are some moving platforms. In order to make the player moving with the platform I made a script that make the platform parent of the player when it triggers it.
 
 Here is the script : 
@@ -89,7 +89,7 @@ public class addConstantVelocity : MonoBehaviour
 
 # Third room :
 
-![image info](/unity5.PNG)
+![image info](/MyBlog/unity5.PNG)
 Here I created a little puzzle, in fact when you climb up the first block you see that some of the next boxes become green or red. Then, when you leave this block the green and red boxes become black again and so you have to remember the pattern to pass the zone as the colliders of red boxes are Trigger.
 
 Here is the script of the color reveal : 
@@ -165,7 +165,7 @@ public class revealBlock : MonoBehaviour
 
 # Fourth room : 
 
-![image info](/unity6.PNG)
+![image info](/MyBlog/unity6.PNG)
 On this room, the gameplay is quite easy : if you touch one of the red wall you die and you respawn.
 
 Here is the script :

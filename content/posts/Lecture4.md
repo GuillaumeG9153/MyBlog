@@ -11,8 +11,8 @@ showFullContent = false
 +++
 # Lecture 10 :
 
-![image info](/galaxy-s10-640x399.png)
-![image info](/6a77b91ce2fd9cfea6757d56cba38ee8.png)
+![image info](/MyBlog/galaxy-s10-640x399.png)
+![image info](/MyBlog/6a77b91ce2fd9cfea6757d56cba38ee8.png)
 
 
 As you can see on the pictures I provided, Apple as well as Samsung have done pretty much the same innovations concerning the design of their smartphones. Firstly, and at the different of previous mobile phones, smartphones just had 3 maximum physical buttons at the bottom of their screen (without counting ones for the volume or the power). Then for the next generation the screen just got bigger (larger and longer), then this screen became borderless on his sides such as the Samsung galaxy s6 edge. After that we notice that the goal of the constructor is to provide the largest screen at possible by just letting a little black band (for Samsung) or a little notch (for iphone) at the top of the screen and removing physical buttons, this band will quickly disappear to give way to a simple camera directly hidden in the screen (sometimes the camera just pop up the screen). So, we clearly see that the goal is to provide the biggest borderless screen that will occupy 100% of the surface of the smartphone in order to give a better immersion on the multimedia content that all applications provide now.
