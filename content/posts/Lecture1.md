@@ -72,4 +72,3 @@ When you open the game you have this window which suggest you to buy the new rel
 
 On many website, especially one which propose illegal contents such as cracked games or softwares, we can find some fake live interaction windows (here it’s designed to look like a discord server) which encourage people to click on it and interact but once it’s done it redirects you to a totally different website which is most often a scam. This is also named a catfish process. To solve the problem we could choose a honest design (obviously it would be less attractive) which shows the website where we would be redirected.
 
-[Home page](/)

@@ -42,5 +42,3 @@ Today a more successful solution exists and it’s named the Razer Tartarus V2 w
 
 
 ![image info](/téléchargement.jpg)
-
-[Home page](/)
