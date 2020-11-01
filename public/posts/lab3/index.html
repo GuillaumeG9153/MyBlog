@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Lab 3 :: Guillaume Grandineau Blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="This new lab is still about the roll a ball game but this time we no longer use our phone to control the game board, this time we will be able to grab it with our hands thanks to VR. It was the most difficult labs of the 3, firstly, we had to import an oculus package to enable VR. Note that I used an oculus quest so I had to build the game like an android game." />
+<meta name="keywords" content=", " />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/posts/lab3/" />
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+  <link rel="stylesheet" href="/assets/red.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/img/favicon/red.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Lab 3 :: Guillaume Grandineau Blog">
+<meta property="og:description" content="This new lab is still about the roll a ball game but this time we no longer use our phone to control the game board, this time we will be able to grab it with our hands thanks to VR. It was the most difficult labs of the 3, firstly, we had to import an oculus package to enable VR. Note that I used an oculus quest so I had to build the game like an android game." />
+<meta property="og:url" content="/posts/lab3/" />
+<meta property="og:site_name" content="Lab 3" />
+
+  <meta property="og:image" content="/">
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="red">
+
+
+<div class="container full headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Guillaume Grandineau blog
+  </div>
+</a>
+
+    </div>
+    <div class="menu-trigger">menu</div>
+  </div>
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="/posts/lab3/">Lab 3</a></h1>
+  <div class="post-meta">
+    
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="/tags/"></a>&nbsp;
+    
+    #<a href="/tags/"></a>&nbsp;
+    
+  </span>
+  
+
+  
+
+  
+
+  <div class="post-content"><div>
+        <p>This new lab is still about the roll a ball game but this time we no longer use our phone to control the game board, this time we will be able to grab it with our hands thanks to VR. It was the most difficult labs of the 3, firstly, we had to import an oculus package to enable VR. Note that I used an oculus quest so I had to build the game like an android game.
+<img src="/lab3-2.PNG" alt="image info">
+When we imported the roll a ball package in the VRTK project we had to create an empty object that will parent the game and add a box collider to it (in order to grab it).
+<img src="/lab3-3.PNG" alt="image info">
+We also had to remove all the part of the controller script related to the movement of the ball and we also had to remove the physic relation between the VR grab object and the roll a ball game because we don’t want the physics of the board to affect the physic of the ball (no bouncing) we also had to remove the tilting ground script.</p>
+<p>After that we had to think that it’s a VR game so we built a table to rise the game board up.
+<img src="/lab3-1.PNG" alt="image info">
+Also when we launch the game we spawn at the center of the scene so we had to move objects (table and board game) and reduce their size however the game board would be huge. For instance here, before moving objects I spawn inside the table.
+<img src="/lab3-5.PNG" alt="image info">
+<img src="/lab3-3.PNG" alt="image info">
+And so after doing the manipulations I can play the game, the only issue is that, as you can see on the video, there is an y offset when I grab the game board so I have to put my hands lower to see the ball and the collectibles.
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/hqTp8mMuOyc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</p>
+<p>You can find my scripts on my Github : <a href="https://github.com/GuillaumeG9153/Lab3_Roll-a-ball-VR">https://github.com/GuillaumeG9153/Lab3_Roll-a-ball-VR</a></p>
+
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/posts/lab2/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Lab 2</span>
+            </a>
+        </span>
+        
+        
+        <span class="button next">
+            <a href="/posts/lecture2/">
+                <span class="button__text">Lecture 2</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

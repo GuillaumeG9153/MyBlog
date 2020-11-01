@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Unity Lab :: Guillaume Grandineau Blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="In this Topic I will present you my Unity game named Floor is Lava 2k20. The game is separated in 4 rooms.
+Here is the first one : This room is like a tutorial since it makes you understand that you need all collectibles in a room in order to remove the wall that is blocking you the access and that if you fall on the lava you respawn at the beginning of the zone." />
+<meta name="keywords" content=", " />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/posts/unity_lab/" />
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+  <link rel="stylesheet" href="/assets/red.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/img/favicon/red.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Unity Lab :: Guillaume Grandineau Blog">
+<meta property="og:description" content="In this Topic I will present you my Unity game named Floor is Lava 2k20. The game is separated in 4 rooms.
+Here is the first one : This room is like a tutorial since it makes you understand that you need all collectibles in a room in order to remove the wall that is blocking you the access and that if you fall on the lava you respawn at the beginning of the zone." />
+<meta property="og:url" content="/posts/unity_lab/" />
+<meta property="og:site_name" content="Unity Lab" />
+
+  <meta property="og:image" content="/">
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="red">
+
+
+<div class="container full headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Guillaume Grandineau blog
+  </div>
+</a>
+
+    </div>
+    <div class="menu-trigger">menu</div>
+  </div>
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="/posts/unity_lab/">Unity Lab</a></h1>
+  <div class="post-meta">
+    
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="/tags/"></a>&nbsp;
+    
+    #<a href="/tags/"></a>&nbsp;
+    
+  </span>
+  
+
+  
+
+  
+
+  <div class="post-content"><div>
+        <p>In this Topic I will present you my Unity game named Floor is Lava 2k20. The game is separated in 4 rooms.</p>
+<h1 id="here-is-the-first-one-">Here is the first one :<a href="#here-is-the-first-one-" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p><img src="/unity1.PNG" alt="image info"></p>
+<p>This room is like a tutorial since it makes you understand that you need all collectibles in a room in order to remove the wall that is blocking you the access and that if you fall on the lava you respawn at the beginning of the zone.</p>
+<p>Here is the script that unable the wall (in blue on the last picture) :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">using</span> <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Collections</span>;
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Collections</span>.<span style="color:#a6e22e">Generic</span>;
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">UnityEngine</span>;
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">disableWall</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoBehaviour</span>
+{
+    <span style="color:#75715e">// Start is called before the first frame update
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Start</span>()
+    {
+        <span style="color:#a6e22e">gameObject</span>.<span style="color:#a6e22e">GetComponent</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Renderer</span><span style="color:#f92672">&gt;</span>().<span style="color:#a6e22e">enabled</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+        <span style="color:#a6e22e">gameObject</span>.<span style="color:#a6e22e">GetComponent</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">BoxCollider</span><span style="color:#f92672">&gt;</span>().<span style="color:#a6e22e">isTrigger</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+    }
+
+    <span style="color:#75715e">// Update is called once per frame
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Update</span>()
+    {
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">FindObjectOfType</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">PlateformerSceneManager</span><span style="color:#f92672">&gt;</span>().<span style="color:#a6e22e">firstWallUnable</span>())
+        {
+            <span style="color:#a6e22e">gameObject</span>.<span style="color:#a6e22e">GetComponent</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Renderer</span><span style="color:#f92672">&gt;</span>().<span style="color:#a6e22e">enabled</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+            <span style="color:#a6e22e">gameObject</span>.<span style="color:#a6e22e">GetComponent</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">BoxCollider</span><span style="color:#f92672">&gt;</span>().<span style="color:#a6e22e">isTrigger</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+            
+        }
+        
+    }
+}
+
+</code></pre></div><h1 id="second-room-">Second room :<a href="#second-room-" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p><img src="/unity3.PNG" alt="image info">
+In this room you still must collect all the collectibles to pass the wall but here there are some moving platforms. In order to make the player moving with the platform I made a script that make the platform parent of the player when it triggers it.</p>
+<p>Here is the script :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">using</span> <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Collections</span>;
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Collections</span>.<span style="color:#a6e22e">Generic</span>;
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">UnityEngine</span>;
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">addConstantVelocity</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoBehaviour</span>
+{
+  
+
+
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">GameObject</span> <span style="color:#a6e22e">Player</span>;
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">OnTriggerEnter</span>(<span style="color:#a6e22e">Collider</span> <span style="color:#a6e22e">other</span>)
+    {
+
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">other</span>.<span style="color:#a6e22e">gameObject</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">Player</span>)
+        {
+            <span style="color:#a6e22e">other</span>.<span style="color:#a6e22e">transform</span>.<span style="color:#a6e22e">SetParent</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">transform</span>);
+        }
+    }
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">OnTriggerExit</span>(<span style="color:#a6e22e">Collider</span> <span style="color:#a6e22e">other</span>)
+    {
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">other</span>.<span style="color:#a6e22e">gameObject</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">Player</span>)
+        {
+            <span style="color:#a6e22e">other</span>.<span style="color:#a6e22e">transform</span>.<span style="color:#a6e22e">SetParent</span>(<span style="color:#66d9ef">null</span>);
+            
+
+        }
+    }
+}
+</code></pre></div><h1 id="third-room-">Third room :<a href="#third-room-" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p><img src="/unity5.PNG" alt="image info">
+Here I created a little puzzle, in fact when you climb up the first block you see that some of the next boxes become green or red. Then, when you leave this block the green and red boxes become black again and so you have to remember the pattern to pass the zone as the colliders of red boxes are Trigger.</p>
+<p>Here is the script of the color reveal :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">using</span> <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Collections</span>;
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Collections</span>.<span style="color:#a6e22e">Generic</span>;
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">UnityEngine</span>;
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">revealBlock</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoBehaviour</span>
+{
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">GameObject</span>[] <span style="color:#a6e22e">Green</span>;
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">GameObject</span>[] <span style="color:#a6e22e">Red</span>;
+	[<span style="color:#a6e22e">SerializeField</span>]
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Material</span> <span style="color:#a6e22e">inMaterial1</span>;
+	[<span style="color:#a6e22e">SerializeField</span>]
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Material</span> <span style="color:#a6e22e">inMaterial2</span>;
+	[<span style="color:#a6e22e">SerializeField</span>]
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Material</span> <span style="color:#a6e22e">outMaterial</span>;
+	[<span style="color:#a6e22e">SerializeField</span>]
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">GameObject</span> <span style="color:#a6e22e">player</span>;
+	
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Start</span>()
+	{
+
+		<span style="color:#a6e22e">Green</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">GameObject</span>.<span style="color:#a6e22e">FindGameObjectsWithTag</span>(<span style="color:#e6db74">&#34;vert&#34;</span>);
+		<span style="color:#a6e22e">Red</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">GameObject</span>.<span style="color:#a6e22e">FindGameObjectsWithTag</span>(<span style="color:#e6db74">&#34;rouge&#34;</span>);
+	}
+
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">OnTriggerEnter</span>(<span style="color:#a6e22e">Collider</span> <span style="color:#a6e22e">other</span>)
+	{
+		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">other</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">player</span>.<span style="color:#a6e22e">name</span>)
+		{
+			<span style="color:#a6e22e">foreach</span>(<span style="color:#a6e22e">GameObject</span> <span style="color:#a6e22e">i</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">Green</span>)
+            {
+				<span style="color:#a6e22e">i</span>.<span style="color:#a6e22e">GetComponent</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Renderer</span><span style="color:#f92672">&gt;</span>().<span style="color:#a6e22e">material</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">inMaterial1</span>;
+
+			}
+
+			<span style="color:#a6e22e">foreach</span> (<span style="color:#a6e22e">GameObject</span> <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">Red</span>)
+			{
+				<span style="color:#a6e22e">j</span>.<span style="color:#a6e22e">GetComponent</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Renderer</span><span style="color:#f92672">&gt;</span>().<span style="color:#a6e22e">material</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">inMaterial2</span>;
+
+			}
+
+		}
+
+
+	}
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">OnTriggerExit</span>(<span style="color:#a6e22e">Collider</span> <span style="color:#a6e22e">other</span>)
+	{
+		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">other</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">player</span>.<span style="color:#a6e22e">name</span>)
+		{
+
+			<span style="color:#a6e22e">foreach</span> (<span style="color:#a6e22e">GameObject</span> <span style="color:#a6e22e">i</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">Green</span>)
+			{
+				<span style="color:#a6e22e">i</span>.<span style="color:#a6e22e">GetComponent</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Renderer</span><span style="color:#f92672">&gt;</span>().<span style="color:#a6e22e">material</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">outMaterial</span>;
+
+			}
+
+			<span style="color:#a6e22e">foreach</span> (<span style="color:#a6e22e">GameObject</span> <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">Red</span>)
+			{
+				<span style="color:#a6e22e">j</span>.<span style="color:#a6e22e">GetComponent</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Renderer</span><span style="color:#f92672">&gt;</span>().<span style="color:#a6e22e">material</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">outMaterial</span>;
+
+			}
+		}
+
+
+
+	}
+}
+
+</code></pre></div><h1 id="fourth-room-">Fourth room :<a href="#fourth-room-" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p><img src="/unity6.PNG" alt="image info">
+On this room, the gameplay is quite easy : if you touch one of the red wall you die and you respawn.</p>
+<p>Here is the script :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">using</span> <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Collections</span>;
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Collections</span>.<span style="color:#a6e22e">Generic</span>;
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">UnityEngine</span>;
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">wallRespawn</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoBehaviour</span>
+{
+    <span style="color:#75715e">// Start is called before the first frame update
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">OnTriggerEnter</span>(<span style="color:#a6e22e">Collider</span> <span style="color:#a6e22e">other</span>)
+    {
+
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">other</span>.<span style="color:#a6e22e">gameObject</span>.<span style="color:#a6e22e">tag</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;player&#34;</span>)
+        {
+            <span style="color:#a6e22e">FindObjectOfType</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">DeathWall</span><span style="color:#f92672">&gt;</span>().<span style="color:#a6e22e">reposition</span>();
+        }
+    }
+}
+
+</code></pre></div><h1 id="additional-gameplay-features-">Additional gameplay features :<a href="#additional-gameplay-features-" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>I added a collectible counter and a timer that displayed the number of collectibles you have and how long it takes you to complete the level.</p>
+<p>Here are the respective scripts :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Collect</span>()
+    {
+        <span style="color:#a6e22e">collectibleCounter</span><span style="color:#f92672">++</span>;
+        <span style="color:#a6e22e">Counter</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Collectible :&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">collectibleCounter</span>.<span style="color:#a6e22e">ToString</span>() <span style="color:#f92672">+</span><span style="color:#e6db74">&#34; / &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">collectibleGoal</span>.<span style="color:#a6e22e">ToString</span>();
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">collectibleCounter</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">collectibleGoal</span>)
+        {
+            <span style="color:#a6e22e">Counter</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Collectibles = max&#34;</span>;
+            <span style="color:#a6e22e">Counter</span>.<span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Color</span>.<span style="color:#a6e22e">green</span>;
+        }
+
+        
+
+
+    }
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">using</span> <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Collections</span>;
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Collections</span>.<span style="color:#a6e22e">Generic</span>;
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">UnityEngine</span>;
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">UnityEngine</span>.<span style="color:#a6e22e">UI</span>;
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Timer</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoBehaviour</span>
+
+   
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">float</span> <span style="color:#a6e22e">temps</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Text</span> <span style="color:#a6e22e">timertext</span>;
+    <span style="color:#75715e">//public int tempsInt;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">minute</span>;
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">seconde</span>;
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">EndZone</span> <span style="color:#a6e22e">Endzone</span>;
+    <span style="color:#75715e">// Start is called before the first frame update
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Start</span>()
+    {
+        
+    }
+
+    <span style="color:#75715e">// Update is called once per frame
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Update</span>()
+    {
+        <span style="color:#75715e">//tempsInt = Mathf.RoundToInt(temps);
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">minute</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Mathf</span>.<span style="color:#a6e22e">FloorToInt</span>(<span style="color:#a6e22e">temps</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">60</span>);
+        <span style="color:#a6e22e">seconde</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Mathf</span>.<span style="color:#a6e22e">FloorToInt</span>(<span style="color:#a6e22e">temps</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">60</span>);
+
+        <span style="color:#a6e22e">timertext</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">minute</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; : &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">seconde</span>);
+        <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">Endzone</span>.<span style="color:#a6e22e">gameFinished</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">false</span>)
+        {  
+            <span style="color:#a6e22e">temps</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">Time</span>.<span style="color:#a6e22e">deltaTime</span>;
+
+        }
+    }
+}
+
+
+</code></pre></div><p>There is also a script that change the respawn location each time you enter a room :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Collections</span>;
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Collections</span>.<span style="color:#a6e22e">Generic</span>;
+<span style="color:#a6e22e">using</span> <span style="color:#a6e22e">UnityEngine</span>;
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">newRespawn1</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoBehaviour</span>   
+{
+    [<span style="color:#a6e22e">SerializeField</span>]
+    <span style="color:#a6e22e">GameObject</span> <span style="color:#a6e22e">newCubeRes</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">DeathWall</span> <span style="color:#a6e22e">DeathWall</span>;
+    <span style="color:#75715e">// Start is called before the first frame update
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">OnTriggerEnter</span>(<span style="color:#a6e22e">Collider</span> <span style="color:#a6e22e">other</span>)
+    {
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">other</span>.<span style="color:#a6e22e">gameObject</span>.<span style="color:#a6e22e">tag</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;player&#34;</span>)
+        {
+           <span style="color:#a6e22e">DeathWall</span>.<span style="color:#a6e22e">cubeRes</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCubeRes</span>;
+        }
+    }
+}
+
+</code></pre></div><p>So now you know the theorical part, there is a video of the gameplay :</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/iQjg5uu649A" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/posts/lecture4/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Lecture 4</span>
+            </a>
+        </span>
+        
+        
+    </div>
+</div>
+
+  
+
+  
+
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

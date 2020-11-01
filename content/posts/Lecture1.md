@@ -1,6 +1,6 @@
 +++
 title = "Lecture 1"
-date = ""
+date = "2020-05-06"
 author = ""
 authorTwitter = "" #do not include @
 cover = ""
@@ -8,7 +8,6 @@ tags = ["", ""]
 keywords = ["", ""]
 description = ""
 showFullContent = false
-
 +++
 
 # Affordances :
