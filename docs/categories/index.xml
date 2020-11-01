@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Guillaume Grandineau Blog</title>
-    <link>/categories/</link>
+    <link>https://guillaumeg9153.github.io/MyBlog/categories/</link>
     <description>Recent content in Categories on Guillaume Grandineau Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://guillaumeg9153.github.io/MyBlog/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
