@@ -20,7 +20,7 @@ My major problem was that my phone was avilable on the run devices on the build 
 
 After several minutes I found the problem cam from my phone. In fact I had to check several options and not only enable debugg mode. I had to check the options “Installer via USB” and “Débogage USB (Paramètres de sécurité)” if someone has a xiaomi phone like me and you have the same problem I think this is your solution.
 
-![image info](/MyBlog/lab2-1i.PNG)
+![image info](/MyBlog/lab2-1i.jpg)
 So then I was able to build my game but…
 
 {{< youtube f-qOpaXH5q0 >}}

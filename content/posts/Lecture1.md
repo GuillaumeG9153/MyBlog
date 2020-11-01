@@ -16,7 +16,7 @@ showFullContent = false
  
 **gear level :**
 
-![image info](/IMG_20200921_190409.jpg)
+![image info](/MyBlog/IMG_20200921_190409.jpg)
 
 Just by looking at the scheme on the gear level we instantly know how to use it. In fact, when the car is in neutral gear, just by looking at the scheme you understand that you have to put the gear level in the upper-left corner, and it’s the same when you want to shift gears even if we can’t see the mechanical pattern.
              
