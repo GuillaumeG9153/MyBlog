@@ -1,6 +1,6 @@
 +++
 title = "Lecture 1"
-date = "2020-05-06"
+date = ""
 author = ""
 authorTwitter = "" #do not include @
 cover = ""
