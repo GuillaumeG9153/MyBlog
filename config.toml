@@ -1,4 +1,4 @@
-baseurl = "https://guillaumeg9153.github.io/MyBlog/"
+baseurl = "https://guillaumeg9153.github.io/MyBlog"
 languageCode = "en-us"
 theme = "terminal"
 paginate = 5
