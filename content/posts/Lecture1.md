@@ -46,7 +46,7 @@ When I was a kid I remember using two types of controller for my RC cars, one lo
 Here is a perfect example of bad gestion of the Gestalt law as, if you are in front of this elevator it’s hard to know which button you have to press for instance if you want to go up. The problem with this lift button is, if you want to go up, we don’t know if you have to press the upper-right button or the bottom-left one since we usually regroup items horizontally or vertically, and here there is both with no separation (it’s the same problem if you want to go down). One easy way to fix it is to fix the arrow directly on the button or simply draw a white line to separate the two options.
 I’m just giving here a bonus illustration of the same problem. 
 
-**Diesel : **
+**Diesel :**
 
 ![image info](/5d95a82aa996e-5d89c66aa6510_aujwepu27etz__700.jpg)
 
