@@ -20,7 +20,7 @@ showFullContent = false
 
 Just by looking at the scheme on the gear level we instantly know how to use it. In fact, when the car is in neutral gear, just by looking at the scheme you understand that you have to put the gear level in the upper-left corner, and it’s the same when you want to shift gears even if we can’t see the mechanical pattern.
              
-*Light switcher in the corridor : *
+*Light switcher in the corridor :*
 
 ![image info](/IMG_20200917_174333.jpg)
 ![image info](/IMG_20200917_174326.jpg)
@@ -39,7 +39,7 @@ When I was a kid I remember using two types of controller for my RC cars, one lo
 
 # Gestalt law : 
 
-**Elevator : **
+**Elevator :**
 
 ![image info](/6814cf3dd14ab23db61d88cb037672df.jpg)
 

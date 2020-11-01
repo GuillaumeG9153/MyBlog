@@ -15,7 +15,7 @@ This game project was easy to follow since we already had labs on Unity before i
 So the scene is composed by a ground and 4 walls (I created an empty game object that parented them), on this board game I added a ball that will be our player and cubes that will be our collectibles.
 You can also see texts, notice that at the difference of our last Unity project we use TextMeshPro instead of Text but we used them as the same.
 
-{{<figure src="/lab1-1.png">}}
+{{<figure src="/lab1-1.PNG">}}
 
 Then we added a Camera Controller script that will permit the camera to follow the ball during the game. The most important script is probably the player controller one which allow a speed to the ball and that also carry the collectible counter function.
 
