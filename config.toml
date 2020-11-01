@@ -61,7 +61,7 @@ publishDir = "docs"
 
     [languages.en.params.logo]
       logoText = "Guillaume Grandineau blog"
-      logoHomeLink = "/"
+      logoHomeLink = "https://guillaumeg9153.github.io/MyBlog"
 
     [languages.en.menu]
       #[[languages.en.menu.main]]
