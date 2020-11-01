@@ -3,58 +3,55 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://guillaumeg9153.github.io/MyBlog/</loc>
-    <lastmod>2020-05-06T00:00:00+00:00</lastmod>
+    <loc>/categories/</loc>
   </url>
   
   <url>
-    <loc>https://guillaumeg9153.github.io/MyBlog/posts/lecture1/</loc>
-    <lastmod>2020-05-06T00:00:00+00:00</lastmod>
+    <loc>/</loc>
   </url>
   
   <url>
-    <loc>https://guillaumeg9153.github.io/MyBlog/posts/</loc>
-    <lastmod>2020-05-06T00:00:00+00:00</lastmod>
+    <loc>/posts/presentation/</loc>
   </url>
   
   <url>
-    <loc>https://guillaumeg9153.github.io/MyBlog/categories/</loc>
+    <loc>/posts/lab1/</loc>
   </url>
   
   <url>
-    <loc>https://guillaumeg9153.github.io/MyBlog/posts/presentation/</loc>
+    <loc>/posts/lab2/</loc>
   </url>
   
   <url>
-    <loc>https://guillaumeg9153.github.io/MyBlog/posts/lab1/</loc>
+    <loc>/posts/lab3/</loc>
   </url>
   
   <url>
-    <loc>https://guillaumeg9153.github.io/MyBlog/posts/lab2/</loc>
+    <loc>/posts/lecture1/</loc>
   </url>
   
   <url>
-    <loc>https://guillaumeg9153.github.io/MyBlog/posts/lab3/</loc>
+    <loc>/posts/lecture2/</loc>
   </url>
   
   <url>
-    <loc>https://guillaumeg9153.github.io/MyBlog/posts/lecture2/</loc>
+    <loc>/posts/lecture3/</loc>
   </url>
   
   <url>
-    <loc>https://guillaumeg9153.github.io/MyBlog/posts/lecture3/</loc>
+    <loc>/posts/lecture4/</loc>
   </url>
   
   <url>
-    <loc>https://guillaumeg9153.github.io/MyBlog/posts/lecture4/</loc>
+    <loc>/posts/</loc>
   </url>
   
   <url>
-    <loc>https://guillaumeg9153.github.io/MyBlog/tags/</loc>
+    <loc>/tags/</loc>
   </url>
   
   <url>
-    <loc>https://guillaumeg9153.github.io/MyBlog/posts/unity_lab/</loc>
+    <loc>/posts/unity_lab/</loc>
   </url>
   
 </urlset>
