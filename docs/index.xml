@@ -7,15 +7,6 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://guillaumeg9153.github.io/MyBlog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title></title>
-      <link>https://guillaumeg9153.github.io/MyBlog/posts/hugoconfig/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://guillaumeg9153.github.io/MyBlog/posts/hugoconfig/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Guillaume Grandineau presentation</title>
       <link>https://guillaumeg9153.github.io/MyBlog/posts/presentation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -24,6 +15,17 @@
       <description>Hi Everyone ! Welcome to my blog, my name is Guillaume Grandineau and I’m a student in 3rd year at Telecom SudParis where I study High Tech Imaging, I’m also a student at Institut Polytechnique de Paris in a Master 2 named “Virtual and Augmented Reality”.
 Here you can find some lectures and labs I did in this master, check out the contents, you could learn some interesting things.
 As a filmmaking, cinema and photography passionate I also give you here a link to my portfolio : https://drive.</description>
+    </item>
+    
+    <item>
+      <title>Hugo and Unity Set-Up</title>
+      <link>https://guillaumeg9153.github.io/MyBlog/posts/hugoconfig/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://guillaumeg9153.github.io/MyBlog/posts/hugoconfig/</guid>
+      <description>Hugo Set-Up Hugo I&amp;rsquo;ve chosen Hugo to create my blog since it was the proposed tool on our firt lab, I also took Hugo for its simplicity to deploy and configure and I wanted something more technical than a &amp;ldquo;wordpress&amp;rdquo; like web editor in order to train myself.
+Deployment I deployed my blog thanks to Github since it&amp;rsquo;s a powerfull and a widely used tool.
+What I did ? Then I chose a minimalist template as you can see because I wanted to keep my blog simple.</description>
     </item>
     
     <item>

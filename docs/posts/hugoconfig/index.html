@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
   
-    <title> :: Guillaume Grandineau Blog</title>
+    <title>Hugo and Unity Set-Up :: Guillaume Grandineau Blog</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="" />
+<meta name="description" content="Hugo Set-Up Hugo I&amp;rsquo;ve chosen Hugo to create my blog since it was the proposed tool on our firt lab, I also took Hugo for its simplicity to deploy and configure and I wanted something more technical than a &amp;ldquo;wordpress&amp;rdquo; like web editor in order to train myself.
+Deployment I deployed my blog thanks to Github since it&amp;rsquo;s a powerfull and a widely used tool.
+What I did ? Then I chose a minimalist template as you can see because I wanted to keep my blog simple." />
 <meta name="keywords" content=", " />
 <meta name="robots" content="noodp" />
 <link rel="canonical" href="https://guillaumeg9153.github.io/MyBlog/posts/hugoconfig/" />
@@ -40,10 +42,12 @@
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content=" :: Guillaume Grandineau Blog">
-<meta property="og:description" content="" />
+<meta property="og:title" content="Hugo and Unity Set-Up :: Guillaume Grandineau Blog">
+<meta property="og:description" content="Hugo Set-Up Hugo I&amp;rsquo;ve chosen Hugo to create my blog since it was the proposed tool on our firt lab, I also took Hugo for its simplicity to deploy and configure and I wanted something more technical than a &amp;ldquo;wordpress&amp;rdquo; like web editor in order to train myself.
+Deployment I deployed my blog thanks to Github since it&amp;rsquo;s a powerfull and a widely used tool.
+What I did ? Then I chose a minimalist template as you can see because I wanted to keep my blog simple." />
 <meta property="og:url" content="https://guillaumeg9153.github.io/MyBlog/posts/hugoconfig/" />
-<meta property="og:site_name" content="" />
+<meta property="og:site_name" content="Hugo and Unity Set-Up" />
 
   <meta property="og:image" content="https://guillaumeg9153.github.io/MyBlog">
 
@@ -88,7 +92,7 @@
     
 <div class="post">
   <h1 class="post-title">
-    <a href="https://guillaumeg9153.github.io/MyBlog/posts/hugoconfig/"></a></h1>
+    <a href="https://guillaumeg9153.github.io/MyBlog/posts/hugoconfig/">Hugo and Unity Set-Up</a></h1>
   <div class="post-meta">
     
     
@@ -108,7 +112,99 @@
 
   
 
-  <div class="post-content"></div>
+  <div class="post-content"><div>
+        <h1 id="hugo-set-up">Hugo Set-Up<a href="#hugo-set-up" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h2 id="hugo">Hugo<a href="#hugo" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>I&rsquo;ve chosen Hugo to create my blog since it was the proposed tool on our firt lab, I also took Hugo for its simplicity to deploy and configure and I wanted something more technical than a &ldquo;wordpress&rdquo; like web editor in order to train myself.</p>
+<h2 id="deployment">Deployment<a href="#deployment" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>I deployed my blog thanks to Github since it&rsquo;s a powerfull and a widely used tool.</p>
+<h2 id="what-i-did-">What I did ?<a href="#what-i-did-" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Then I chose a minimalist template as you can see because I wanted to keep my blog simple.</p>
+<p>However I had several issues particularly with images. As you will see in the following posts, I I did not succeed center and resize my images.</p>
+<p>Moreover, in my md files I had to change the path of my images from /image_path to /MyBlog/image_path</p>
+<p>The advantage of my template is that it was easy to configure since on the Github I found it, the config.toml was given.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">baseurl</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://guillaumeg9153.github.io/MyBlog&#34;</span>
+<span style="color:#a6e22e">languageCode</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;en-us&#34;</span>
+<span style="color:#a6e22e">theme</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;terminal&#34;</span>
+<span style="color:#a6e22e">paginate</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+<span style="color:#a6e22e">publishDir</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;docs&#34;</span>
+
+[<span style="color:#a6e22e">params</span>]
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">dir</span> <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">main</span> <span style="color:#a6e22e">content</span> (<span style="color:#66d9ef">default</span> <span style="color:#a6e22e">is</span> <span style="color:#e6db74">`content/posts`</span>).
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">list</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">set</span> <span style="color:#a6e22e">content</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">show</span> <span style="color:#a6e22e">up</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">index</span> <span style="color:#a6e22e">page</span> (<span style="color:#a6e22e">baseurl</span>).
+  <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">posts</span>
+  <span style="color:#a6e22e">contentTypeName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;posts&#34;</span>
+
+  <span style="color:#960050;background-color:#1e0010">#</span> [<span style="color:#e6db74">&#34;orange&#34;</span>, <span style="color:#e6db74">&#34;blue&#34;</span>, <span style="color:#e6db74">&#34;red&#34;</span>, <span style="color:#e6db74">&#34;green&#34;</span>, <span style="color:#e6db74">&#34;pink&#34;</span>]
+  <span style="color:#a6e22e">themeColor</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>
+
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">set</span> <span style="color:#66d9ef">this</span> <span style="color:#a6e22e">to</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">only</span> <span style="color:#a6e22e">submenu</span> <span style="color:#a6e22e">trigger</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">be</span> <span style="color:#a6e22e">visible</span>
+  <span style="color:#a6e22e">showMenuItems</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">show</span> <span style="color:#a6e22e">selector</span> <span style="color:#a6e22e">to</span> <span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">language</span>
+  <span style="color:#a6e22e">showLanguageSelector</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">set</span> <span style="color:#a6e22e">theme</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">full</span> <span style="color:#a6e22e">screen</span> <span style="color:#a6e22e">width</span>
+  <span style="color:#a6e22e">fullWidthTheme</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">center</span> <span style="color:#a6e22e">theme</span> <span style="color:#66d9ef">with</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">width</span>
+  <span style="color:#a6e22e">centerTheme</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">set</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">custom</span> <span style="color:#a6e22e">favicon</span> (<span style="color:#66d9ef">default</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">a</span> <span style="color:#e6db74">`themeColor`</span> <span style="color:#a6e22e">square</span>)
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">favicon</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;favicon.ico&#34;</span>
+
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">set</span> <span style="color:#a6e22e">post</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">show</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">last</span> <span style="color:#a6e22e">updated</span>
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">If</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">use</span> <span style="color:#a6e22e">git</span>, <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">set</span> <span style="color:#e6db74">`enableGitInfo`</span> <span style="color:#a6e22e">to</span> <span style="color:#e6db74">`true`</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">then</span> <span style="color:#a6e22e">post</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">automatically</span> <span style="color:#a6e22e">get</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">last</span> <span style="color:#a6e22e">updated</span>
+  <span style="color:#a6e22e">showLastUpdated</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">Provide</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">string</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">prefix</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">last</span> <span style="color:#a6e22e">update</span> <span style="color:#a6e22e">date</span>. <span style="color:#a6e22e">By</span> <span style="color:#66d9ef">default</span>, <span style="color:#a6e22e">it</span> <span style="color:#a6e22e">looks</span> <span style="color:#a6e22e">like</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2020</span><span style="color:#f92672">-</span><span style="color:#a6e22e">xx</span><span style="color:#f92672">-</span><span style="color:#a6e22e">xx</span> [<span style="color:#a6e22e">Updated</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2020</span><span style="color:#f92672">-</span><span style="color:#a6e22e">xx</span><span style="color:#f92672">-</span><span style="color:#a6e22e">xx</span>] <span style="color:#f92672">::</span> <span style="color:#a6e22e">Author</span>
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">updatedDatePrefix</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Updated&#34;</span>
+
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">set</span> <span style="color:#a6e22e">all</span> <span style="color:#a6e22e">headings</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">their</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">size</span> (<span style="color:#a6e22e">depending</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">browser</span> <span style="color:#a6e22e">settings</span>)
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">it</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">s</span> <span style="color:#a6e22e">set</span> <span style="color:#a6e22e">to</span> <span style="color:#e6db74">`true`</span> <span style="color:#a6e22e">by</span> <span style="color:#66d9ef">default</span>
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">oneHeadingSize</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+
+[<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">twitter</span>]
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">set</span> <span style="color:#a6e22e">Twitter</span> <span style="color:#a6e22e">handles</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">Twitter</span> <span style="color:#a6e22e">cards</span>
+  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">see</span> <span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
+</span><span style="color:#75715e"></span>  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#66d9ef">do</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">include</span> <span style="color:#960050;background-color:#1e0010">@</span>
+  <span style="color:#a6e22e">creator</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+  <span style="color:#a6e22e">site</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+
+[<span style="color:#a6e22e">languages</span>]
+  [<span style="color:#a6e22e">languages</span>.<span style="color:#a6e22e">en</span>]
+    <span style="color:#a6e22e">languageName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;English&#34;</span>
+    <span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Guillaume Grandineau Blog&#34;</span>
+    <span style="color:#a6e22e">subtitle</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;A simple, retro theme for Hugo&#34;</span>
+    <span style="color:#a6e22e">owner</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+    <span style="color:#a6e22e">keywords</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+    <span style="color:#a6e22e">copyright</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+    <span style="color:#a6e22e">menuMore</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Show more&#34;</span>
+    <span style="color:#a6e22e">readMore</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Read more&#34;</span>
+    <span style="color:#a6e22e">readOtherPosts</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Read other posts&#34;</span>
+    <span style="color:#a6e22e">missingContentMessage</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Page not found...&#34;</span>
+    <span style="color:#a6e22e">missingBackButtonLabel</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Back to home page&#34;</span>
+
+    [<span style="color:#a6e22e">languages</span>.<span style="color:#a6e22e">en</span>.<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">logo</span>]
+      <span style="color:#a6e22e">logoText</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Guillaume Grandineau blog&#34;</span>
+      <span style="color:#a6e22e">logoHomeLink</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://guillaumeg9153.github.io/MyBlog&#34;</span>
+
+    [<span style="color:#a6e22e">languages</span>.<span style="color:#a6e22e">en</span>.<span style="color:#a6e22e">menu</span>]
+      <span style="color:#960050;background-color:#1e0010">#</span>[[<span style="color:#a6e22e">languages</span>.<span style="color:#a6e22e">en</span>.<span style="color:#a6e22e">menu</span>.<span style="color:#a6e22e">main</span>]]
+      <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">identifier</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;about&#34;</span>
+      <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;About&#34;</span>
+      <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/about&#34;</span>
+      <span style="color:#960050;background-color:#1e0010">#</span> [[<span style="color:#a6e22e">languages</span>.<span style="color:#a6e22e">en</span>.<span style="color:#a6e22e">menu</span>.<span style="color:#a6e22e">main</span>]]
+      <span style="color:#960050;background-color:#1e0010">#</span>  <span style="color:#a6e22e">identifier</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;showcase&#34;</span>
+      <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Showcase&#34;</span>
+      <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/showcase&#34;</span>
+	  
+
+</code></pre></div><h1 id="unity-set-up">Unity Set-Up<a href="#unity-set-up" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>When we did the first lab I already knew how to start a Unity project so I didn&rsquo;t have issues.</p>
+<p>I encourage you parcouring the next labs to know more about my Unity journey, I also added a post concerning my Unity game.</p>
+<p><strong>So I hope you will appreciate my blog and its content, see you !</strong></p>
+
+      </div></div>
 
   
   
@@ -119,10 +215,17 @@
     </div>
     <div class="pagination__buttons">
         
+        <span class="button previous">
+            <a href="https://guillaumeg9153.github.io/MyBlog/posts/presentation/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Guillaume Grandineau presentation</span>
+            </a>
+        </span>
+        
         
         <span class="button next">
-            <a href="https://guillaumeg9153.github.io/MyBlog/posts/presentation/">
-                <span class="button__text">Guillaume Grandineau presentation</span>
+            <a href="https://guillaumeg9153.github.io/MyBlog/posts/lab1/">
+                <span class="button__text">Lab 1</span>
                 <span class="button__icon">→</span>
             </a>
         </span>
