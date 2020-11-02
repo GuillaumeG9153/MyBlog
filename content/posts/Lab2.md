@@ -10,6 +10,8 @@ description = ""
 showFullContent = false
 +++
 
+# Roll a ball mobile
+
 This second lab is about the same game than the previous one but it’s a different way to play it since we built it for android devices.
 ![image info](/MyBlog/lab2-1.PNG)
 So the new gameplay is the following one : we no longer control  the ball it’s the gyroscope of our phone that controll the board game (wall and ground). This is you your ground need to parent all of our game objects to the ground like this.

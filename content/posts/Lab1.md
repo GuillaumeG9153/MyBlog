@@ -10,6 +10,8 @@ description = ""
 showFullContent = false
 +++
 
+# Roll a ball
+
 This game project was easy to follow since we already had labs on Unity before in order to build our proper game. First of all, building the objects that compose the game was the first task and as I said it was a quick task and this is how I did it.
 
 So the scene is composed by a ground and 4 walls (I created an empty game object that parented them), on this board game I added a ball that will be our player and cubes that will be our collectibles.

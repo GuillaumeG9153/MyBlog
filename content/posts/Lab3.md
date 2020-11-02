@@ -10,6 +10,8 @@ description = ""
 showFullContent = false
 +++
 
+# Roll a ball VR
+
 This new lab is still about the roll a ball game but this time we no longer use our phone to control the game board, this time we will be able to grab it with our hands thanks to VR. It was the most difficult labs of the 3, firstly, we had to import an oculus package to enable VR. Note that I used an oculus quest so I had to build the game like an android game.
 ![image info](/MyBlog/lab3-2.PNG)
 When we imported the roll a ball package in the VRTK project we had to create an empty object that will parent the game and add a box collider to it (in order to grab it).
