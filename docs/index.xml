@@ -7,18 +7,6 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://guillaumeg9153.github.io/MyBlog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Blender creation</title>
-      <link>https://guillaumeg9153.github.io/MyBlog/posts/blender/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://guillaumeg9153.github.io/MyBlog/posts/blender/</guid>
-      <description>Blender In the different labs we learn how to create different type of shapes thanks to the exctract tools. We also learnt how to change materials and their colours.
-Thanks to these labs I did these 3 3D creations : a launcher, my clio 1 car and my character that looks like a stonks version of Spirou.
-launcher
-I won&amp;rsquo;t go deep in this lab since everyone has the same object at the end, but it&amp;rsquo;s pretty cool so here is my launcher :</description>
-    </item>
-    
-    <item>
       <title>Guillaume Grandineau presentation</title>
       <link>https://guillaumeg9153.github.io/MyBlog/posts/presentation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -66,6 +54,18 @@ So the scene is composed by a ground and 4 walls (I created an empty game object
       
       <guid>https://guillaumeg9153.github.io/MyBlog/posts/lab3/</guid>
       <description>Roll a ball VR This new lab is still about the roll a ball game but this time we no longer use our phone to control the game board, this time we will be able to grab it with our hands thanks to VR. It was the most difficult labs of the 3, firstly, we had to import an oculus package to enable VR. Note that I used an oculus quest so I had to build the game like an android game.</description>
+    </item>
+    
+    <item>
+      <title>Labs on blender</title>
+      <link>https://guillaumeg9153.github.io/MyBlog/posts/blender/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://guillaumeg9153.github.io/MyBlog/posts/blender/</guid>
+      <description>Blender In the different labs we learn how to create different type of shapes thanks to the exctract tools. We also learnt how to change materials and their colours.
+Thanks to these labs I did these 3 3D creations : a launcher, my clio 1 car and my character that looks like a stonks version of Spirou.
+launcher
+I won&amp;rsquo;t go deep in this lab since everyone has the same object at the end, but it&amp;rsquo;s pretty cool so here is my launcher :</description>
     </item>
     
     <item>

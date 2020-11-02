@@ -1,5 +1,5 @@
 +++
-title = "Blender creation"
+title = "Labs on blender"
 date = ""
 author = ""
 authorTwitter = "" #do not include @
@@ -59,7 +59,7 @@ Now this is the turn of my character !
 As you can see it's like a mix of Spirou and the Stonks character.
 
 ![image info](/MyBlog/spirou.jpg)
-![image info](/MyBlog/stonks.jpg)
+![image info](/MyBlog/stonks.jfif)
 
 To to that I added : spheres to do the buttons of the suit and vertices to change locally the colour (to do the black stripes).
 
