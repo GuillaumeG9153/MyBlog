@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title> :: Guillaume Grandineau Blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Cart Pole   This video explains the problem we try to solve using reinforcement learning.
+On this page we will try to resume the lab we made in class and which parameter affect the efficiency of our model.
+QNetwork: In this section we define our network which is a fully connected leyer.
+Results: it returns the value function at the current for the action 0 on the left and the action 1 on the right 10 times because there are 10 states (we take the max and the agent choose the value)" />
+<meta name="keywords" content=", " />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://guillaumeg9153.github.io/MyBlog/posts/lab_qlearning/" />
+
+
+
+
+<link rel="stylesheet" href="https://guillaumeg9153.github.io/MyBlog/assets/style.css">
+
+  <link rel="stylesheet" href="https://guillaumeg9153.github.io/MyBlog/assets/red.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://guillaumeg9153.github.io/MyBlog/img/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="https://guillaumeg9153.github.io/MyBlog/img/favicon/red.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content=" :: Guillaume Grandineau Blog">
+<meta property="og:description" content="Cart Pole   This video explains the problem we try to solve using reinforcement learning.
+On this page we will try to resume the lab we made in class and which parameter affect the efficiency of our model.
+QNetwork: In this section we define our network which is a fully connected leyer.
+Results: it returns the value function at the current for the action 0 on the left and the action 1 on the right 10 times because there are 10 states (we take the max and the agent choose the value)" />
+<meta property="og:url" content="https://guillaumeg9153.github.io/MyBlog/posts/lab_qlearning/" />
+<meta property="og:site_name" content="" />
+
+  <meta property="og:image" content="https://guillaumeg9153.github.io/MyBlog">
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="red">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="https://guillaumeg9153.github.io/MyBlog">
+  <div class="logo">
+    Guillaume Grandineau blog
+  </div>
+</a>
+
+    </div>
+    <div class="menu-trigger">menu</div>
+  </div>
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="https://guillaumeg9153.github.io/MyBlog/posts/lab_qlearning/"></a></h1>
+  <div class="post-meta">
+    
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="https://guillaumeg9153.github.io/MyBlog/tags/"></a>&nbsp;
+    
+    #<a href="https://guillaumeg9153.github.io/MyBlog/tags/"></a>&nbsp;
+    
+  </span>
+  
+
+  
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="cart-pole">Cart Pole<a href="#cart-pole" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/Qk61tqRrj0E" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>This video explains the problem we try to solve using reinforcement learning.</p>
+<p>On this page we will try to resume the lab we made in class and which parameter affect the efficiency of our model.</p>
+<h3 id="qnetwork">QNetwork:<a href="#qnetwork" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>In this section we define our network which is a fully connected leyer.</p>
+<p><img src="/MyBlog/1.jpg" alt="image info"></p>
+<p><strong>Results:</strong> it returns the value function at the current for the action 0 on the left and the action 1 on the right
+10 times because there are 10 states (we take the max and the agent choose the value)</p>
+<h3 id="doer">Doer:<a href="#doer" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>The doer represent things that do something (that act). It requires the model and has an epsilon (this is why here it acts randomly 10 percent of the time).</p>
+<p>Then it choose the action from the max and return the action.</p>
+<p><img src="/MyBlog/2.jpg" alt="image info"></p>
+<h3 id="experience-replay">Experience replay:<a href="#experience-replay" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>This is the part that permit to train the model and that defines the transition class.</p>
+<p>It also introduces the notion of relevance which is connected to the loss of transition to make it more relevant.</p>
+<p>There is the output of this transition class (it gives all the information):</p>
+<p><img src="/MyBlog/3.jpg" alt="image info"></p>
+<p>Now, concerning the experience replay class:</p>
+<p>Its input is the list of transition, it deletes the less usefull transitions or the oldest ones when a transition is added.</p>
+<p>The weights are uptaded with the relevance of the transition.</p>
+<p>Then it samples a batch from thes transitions :</p>
+<p><img src="/MyBlog/4.jpg" alt="image info"></p>
+<h3 id="learner">Learner<a href="#learner" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>The learner trains the Qlearner from batches of the experience replay, here we consider 2 algorithms : SARSA and Qlearning.</p>
+<p>We get our network as a target (the one that is train)</p>
+<p><img src="/MyBlog/5.jpg" alt="image info"></p>
+<p>We save a copy of it as a frozen network that we use as evaluation.</p>
+<p><img src="/MyBlog/6.jpg" alt="image info"></p>
+<p>Weights are kept frozen to evaluate.</p>
+<p>There are the 2 types of learning algorithms:</p>
+<p><img src="/MyBlog/7.jpg" alt="image info"></p>
+<p>The target value is different for the 2 algorithms:</p>
+<p><img src="/MyBlog/8.jpg" alt="image info"></p>
+<p>Then we wompute the loss function to update the target value.</p>
+<p>We test before train, during the train, and print the target and the frozen values.</p>
+<p><img src="/MyBlog/9.jpg" alt="image info"></p>
+<p>This image shows the steps.</p>
+<p><img src="/MyBlog/10.jpg" alt="image info"></p>
+<p>The next image is the illustration of the catching up of the frozen layer.</p>
+<p><img src="/MyBlog/11.jpg" alt="image info"></p>
+<h3 id="training-loop">Training loop:<a href="#training-loop" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>This part is the most interesting one since this is here that we will change the parameters to see which of them affect the most our model.</p>
+<p>This part starts by initializing all the previous blocks.</p>
+<p><img src="/MyBlog/12.jpg" alt="image info"></p>
+<p>Then we have a list of experience replays:</p>
+<p><img src="/MyBlog/13.jpg" alt="image info"></p>
+<p>This will influence the behavior, the result shows that the loss sometimes decreases and sometimes increases because the dataset is changing over time and so the score.</p>
+<p>Evaluation:</p>
+<p><img src="/MyBlog/14.jpg" alt="image info"></p>
+<p><img src="/MyBlog/15.jpg" alt="image info"></p>
+<p>As you can see we have all the transitions.</p>
+<p><img src="/MyBlog/16.jpg" alt="image info"></p>
+<p>These are the rewards for choosing left or right in a current state, these are the values that are trained (the values go to 0 by the end of the episode and it has to be smooth).</p>
+<p>Because of the 0 at the end  it knows it will soon gonna fall.</p>
+<p>Actually, we We want the previous vector to be one higher to the previous one, gamma tells us how many we need to go more later, we will go deeper in this topic later.</p>
+<h2 id="experimentation">Experimentation:<a href="#experimentation" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>We will try to have the best result as possible, the highest score, by changing the component of the initialization of the training loop and the neural network.</p>
+<p><strong>Capacity (width):</strong></p>
+<p>Width = 16</p>
+<p><img src="/MyBlog/17.jpg" alt="image info"></p>
+<p><img src="/MyBlog/18.jpg" alt="image info"></p>
+<p>Width = 128</p>
+<p><img src="/MyBlog/19.jpg" alt="image info"></p>
+<p><img src="/MyBlog/20.jpg" alt="image info"></p>
+<p>The training is slower and doesn&rsquo;t have a higher score.</p>
+<p><strong>SARSA vs Qlearning</strong></p>
+<p>Here we used Qlearning instead of SARSA and we compare our next result with our last one with a width of 128.</p>
+<p><img src="/MyBlog/21.jpg" alt="image info"></p>
+<p><img src="/MyBlog/22.jpg" alt="image info"></p>
+<p>It improves significantly our model, the score is higher.</p>
+<p><strong>Buffer size</strong></p>
+<p>We use here a buffer size of 1024 here instead of 256 before:</p>
+<p><img src="/MyBlog/23.jpg" alt="image info"></p>
+<p><img src="/MyBlog/24.jpg" alt="image info"></p>
+<p>This time the score is reduced.</p>
+<p><strong>Type of experience replays</strong></p>
+<p>We will test here different type of experience replays.</p>
+<p>Sort transition = True means that it will remove the less relevant transition first instead of the oldest one (off-policy method).</p>
+<p><img src="/MyBlog/25.jpg" alt="image info"></p>
+<p><img src="/MyBlog/26.jpg" alt="image info"></p>
+<p><img src="/MyBlog/27.jpg" alt="image info"></p>
+<p><img src="/MyBlog/28.jpg" alt="image info"></p>
+<p><img src="/MyBlog/29.jpg" alt="image info"></p>
+<p><img src="/MyBlog/30.jpg" alt="image info"></p>
+<p><img src="/MyBlog/31.jpg" alt="image info"></p>
+<p><img src="/MyBlog/32.jpg" alt="image info"></p>
+<p><img src="/MyBlog/33.jpg" alt="image info"></p>
+<p><img src="/MyBlog/34.jpg" alt="image info"></p>
+<p><img src="/MyBlog/35.jpg" alt="image info"></p>
+<p><img src="/MyBlog/36.jpg" alt="image info"></p>
+<p>As we can see with the parameters we use they don&rsquo;t have a strong influence by themselves, but if we combine them:</p>
+<p><img src="/MyBlog/37.jpg" alt="image info"></p>
+<p><img src="/MyBlog/38.jpg" alt="image info"></p>
+<p><img src="/MyBlog/39.jpg" alt="image info"></p>
+<p>The result is significantly better.</p>
+<p>The batch size is also a limiting factor, it has to be bigger to train on more data, it&rsquo;s also what happened when we added an other exeperience replay.</p>
+<p><img src="/MyBlog/40.jpg" alt="image info"></p>
+<p>Here I used a batch size of 128 and the score is higher than with a smaller batch size.</p>
+<p>So, these are the parameters to change in order to have a good model : an high width like 512, using the 4 experience replay with also big batch size such as 64.</p>
+<p><strong>Gamma parameter:</strong></p>
+<p>We want the value function target to be a certain factor higher to the previous one, gamma is this factor, it tells us how many we need to go more later:</p>
+<p><img src="/MyBlog/41.jpg" alt="image info"></p>
+<p><img src="/MyBlog/42.jpg" alt="image info"></p>
+<p>Gamma will smooth the result and this is what we want.</p>
+<p>This is a comparaison between gamma = 0.9:</p>
+<p><img src="/MyBlog/43.jpg" alt="image info"></p>
+<p><img src="/MyBlog/44.jpg" alt="image info"></p>
+<p>And gamma = 0.99:</p>
+<p><img src="/MyBlog/45.jpg" alt="image info"></p>
+<p><img src="/MyBlog/46.jpg" alt="image info"></p>
+<p>A good value for gamma is 0.90.</p>
+
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="https://guillaumeg9153.github.io/MyBlog/posts/presentation/">
+                <span class="button__text">Guillaume Grandineau presentation</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="https://guillaumeg9153.github.io/MyBlog/assets/main.js"></script>
+<script src="https://guillaumeg9153.github.io/MyBlog/assets/prism.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
