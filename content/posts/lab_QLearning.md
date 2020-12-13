@@ -1,5 +1,5 @@
 +++
-title = ""
+title = "Lab Reinforcement learning"
 date = ""
 author = ""
 authorTwitter = "" #do not include @
