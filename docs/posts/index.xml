@@ -119,6 +119,17 @@ Firstly I think AR is here to help us in our daily but I also think it has to be
     </item>
     
     <item>
+      <title>RNN lab</title>
+      <link>https://guillaumeg9153.github.io/MyBlog/posts/labrnn/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://guillaumeg9153.github.io/MyBlog/posts/labrnn/</guid>
+      <description>The main goal of this lab is to implement a model that is able to caption an image with a text that describes this image.
+There will be 5 parts for this lab: Dataset description and pre-processing
+ Encoder: pre-trained CNN Decoder: LSTM and Encoder-Decoder model Training Interference  Firstly, we describe our dataset: The one we use is COCO which is famous for object detection and image captioning. We will use here the 2014 version since it has 83k images for training, 41k for validation and 41k for test.</description>
+    </item>
+    
+    <item>
       <title>Unity Lab</title>
       <link>https://guillaumeg9153.github.io/MyBlog/posts/unity_lab/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
