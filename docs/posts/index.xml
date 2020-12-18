@@ -130,6 +130,17 @@ There will be 5 parts for this lab: Dataset description and pre-processing
     </item>
     
     <item>
+      <title>RNN Lecture</title>
+      <link>https://guillaumeg9153.github.io/MyBlog/posts/rnnlecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://guillaumeg9153.github.io/MyBlog/posts/rnnlecture/</guid>
+      <description>RNN What does RNN responds to?
+Nowadays, with FFNN we can respond to several types of problems, for instance it can handle a simple problem of sentiment determination in a phrase. Example:
+It can handle this problem since it only takes fixed sized vectors as inputs, this is why in this case it used a fixed sized window of one word but because of that, it can lead to wrong predictions especially when double negation is used in a sentence.</description>
+    </item>
+    
+    <item>
       <title>Unity Lab</title>
       <link>https://guillaumeg9153.github.io/MyBlog/posts/unity_lab/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

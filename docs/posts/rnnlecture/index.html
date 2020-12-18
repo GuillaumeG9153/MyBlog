@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>RNN Lecture :: Guillaume Grandineau Blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="RNN What does RNN responds to?
+Nowadays, with FFNN we can respond to several types of problems, for instance it can handle a simple problem of sentiment determination in a phrase. Example:
+It can handle this problem since it only takes fixed sized vectors as inputs, this is why in this case it used a fixed sized window of one word but because of that, it can lead to wrong predictions especially when double negation is used in a sentence." />
+<meta name="keywords" content=", " />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://guillaumeg9153.github.io/MyBlog/posts/rnnlecture/" />
+
+
+
+
+<link rel="stylesheet" href="https://guillaumeg9153.github.io/MyBlog/assets/style.css">
+
+  <link rel="stylesheet" href="https://guillaumeg9153.github.io/MyBlog/assets/red.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://guillaumeg9153.github.io/MyBlog/img/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="https://guillaumeg9153.github.io/MyBlog/img/favicon/red.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="RNN Lecture :: Guillaume Grandineau Blog">
+<meta property="og:description" content="RNN What does RNN responds to?
+Nowadays, with FFNN we can respond to several types of problems, for instance it can handle a simple problem of sentiment determination in a phrase. Example:
+It can handle this problem since it only takes fixed sized vectors as inputs, this is why in this case it used a fixed sized window of one word but because of that, it can lead to wrong predictions especially when double negation is used in a sentence." />
+<meta property="og:url" content="https://guillaumeg9153.github.io/MyBlog/posts/rnnlecture/" />
+<meta property="og:site_name" content="RNN Lecture" />
+
+  <meta property="og:image" content="https://guillaumeg9153.github.io/MyBlog">
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="red">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="https://guillaumeg9153.github.io/MyBlog">
+  <div class="logo">
+    Guillaume Grandineau blog
+  </div>
+</a>
+
+    </div>
+    <div class="menu-trigger">menu</div>
+  </div>
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="https://guillaumeg9153.github.io/MyBlog/posts/rnnlecture/">RNN Lecture</a></h1>
+  <div class="post-meta">
+    
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="https://guillaumeg9153.github.io/MyBlog/tags/"></a>&nbsp;
+    
+    #<a href="https://guillaumeg9153.github.io/MyBlog/tags/"></a>&nbsp;
+    
+  </span>
+  
+
+  
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="rnn">RNN<a href="#rnn" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>What does RNN responds to?</p>
+<p>Nowadays, with FFNN we can respond to several types of problems, for instance it can handle a simple problem of sentiment determination in a phrase. Example:</p>
+<p><img src="/MyBlog/cours1.jpg" alt="image info"></p>
+<p>It can handle this problem since it only takes fixed sized vectors as inputs, this is why in this case it used a fixed sized window of one word but because of that, it can lead to wrong predictions especially when double negation is used in a sentence.</p>
+<p>This is why we need a new architecture for this type of problem. An architecture with variable length inputs and outputs, that preserve sequential information and have a good generalization over sequences.</p>
+<h3 id="vanilla-rnn">Vanilla RNN<a href="#vanilla-rnn" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>The RNN structure is different since it has a recurrence relation at each step, the function depends of the vector input x and the previous cell state h.</p>
+<p><img src="/MyBlog/cours2.jpg" alt="image info"></p>
+<p><img src="/MyBlog/cours3.jpg" alt="image info"></p>
+<p>Then we can put these cells in cascade.</p>
+<p><img src="/MyBlog/cours4.jpg" alt="image info"></p>
+<p>How it trains?</p>
+<p>We want here to minimize the loss L which is the sum of all the RNN cells so we have to minimize each of them. To do so, we update whh, wxh and why in the direction of the gradient thanks to the backpropagation.
+The difficulty here is that gradients are calculated from recurrence relation.</p>
+<p><img src="/MyBlog/cours5.jpg" alt="image info"></p>
+<p>Because of this, we multiply over and over by the same factor whh to calculate the gradient, which leads to 2 problems: An explosion of the gradient if factor &gt; 1 and a vanishing gradient if factor &lt; 1.
+The solutions to these problems are the gradient clipping if factors &gt; 1 and a new RNN cell architecture if factors &lt; 1.</p>
+<h3 id="lstm">LSTM<a href="#lstm" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>LSTM is a kind of RNN with a different cell architecture that avoid these gradients problems.</p>
+<p>This is its structure:</p>
+<p><img src="/MyBlog/cours6.jpg" alt="image info"></p>
+<p>The four gates filter information, the ft gate is the forget gate, it decides what information we forget or keep, the input gate it decides which values will be written to current cell, the input modulation gate gt decides how much to write to current cell and finally the ouput ot that decides what will be output from the current cell.</p>
+<p><img src="/MyBlog/cours7.jpg" alt="image info"></p>
+<p><img src="/MyBlog/cours8.jpg" alt="image info"></p>
+<p>Here the recursive term is constrained thanks to the 4 gates, this permit to avoid the vanishing gradient.</p>
+<h3 id="deep-rnn">Deep RNN<a href="#deep-rnn" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Deep RNN is used for language modelling: rephrasing, word prediction, generating text sequences, hand-written text generation, translation and so on.
+We can also use this with images to predict next pixels for instance or for image captioning.</p>
+<h3 id="attention">Attention<a href="#attention" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Attention is defined by the ability to choose what to focus on. Actually, RNN has a memory of pasts events, this is called the implicit attention, but that is not enough. To go deeper, we use new mechanisms called explicit attention that reduce computations, better understand what the Neural Network is doing and that simplify sequential processing. This is how it works.</p>
+<p><img src="/MyBlog/cours9.jpg" alt="image info"></p>
+
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="https://guillaumeg9153.github.io/MyBlog/posts/labrnn/">
+                <span class="button__icon">←</span>
+                <span class="button__text">RNN lab</span>
+            </a>
+        </span>
+        
+        
+        <span class="button next">
+            <a href="https://guillaumeg9153.github.io/MyBlog/posts/unity_lab/">
+                <span class="button__text">Unity Lab</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="https://guillaumeg9153.github.io/MyBlog/assets/main.js"></script>
+<script src="https://guillaumeg9153.github.io/MyBlog/assets/prism.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
