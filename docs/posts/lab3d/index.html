@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>lab: 3D reconstruction :: Guillaume Grandineau Blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The goal of this lab was to implement a 3D reconstruction from multi-views of human pose. We had to reconstruct the 3D skeleton of a person from the matching joints of multi-views. To do so we had data: videos of subjects doing different movements OP2DTXT, containing text files of 25 joints on each sequences of each subject, this is the format of every line
+X and y are horizontal and vertical pxiels and r is the reliability score" />
+<meta name="keywords" content=", " />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://guillaumeg9153.github.io/MyBlog/posts/lab3d/" />
+
+
+
+
+<link rel="stylesheet" href="https://guillaumeg9153.github.io/MyBlog/assets/style.css">
+
+  <link rel="stylesheet" href="https://guillaumeg9153.github.io/MyBlog/assets/red.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://guillaumeg9153.github.io/MyBlog/img/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="https://guillaumeg9153.github.io/MyBlog/img/favicon/red.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="lab: 3D reconstruction :: Guillaume Grandineau Blog">
+<meta property="og:description" content="The goal of this lab was to implement a 3D reconstruction from multi-views of human pose. We had to reconstruct the 3D skeleton of a person from the matching joints of multi-views. To do so we had data: videos of subjects doing different movements OP2DTXT, containing text files of 25 joints on each sequences of each subject, this is the format of every line
+X and y are horizontal and vertical pxiels and r is the reliability score" />
+<meta property="og:url" content="https://guillaumeg9153.github.io/MyBlog/posts/lab3d/" />
+<meta property="og:site_name" content="lab: 3D reconstruction" />
+
+  <meta property="og:image" content="https://guillaumeg9153.github.io/MyBlog">
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="red">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="https://guillaumeg9153.github.io/MyBlog">
+  <div class="logo">
+    Guillaume Grandineau blog
+  </div>
+</a>
+
+    </div>
+    <div class="menu-trigger">menu</div>
+  </div>
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="https://guillaumeg9153.github.io/MyBlog/posts/lab3d/">lab: 3D reconstruction</a></h1>
+  <div class="post-meta">
+    
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="https://guillaumeg9153.github.io/MyBlog/tags/"></a>&nbsp;
+    
+    #<a href="https://guillaumeg9153.github.io/MyBlog/tags/"></a>&nbsp;
+    
+  </span>
+  
+
+  
+
+  
+
+  <div class="post-content"><div>
+        <p>The goal of this lab was to implement a 3D reconstruction from multi-views of human pose.
+We had to reconstruct the 3D skeleton of a person from the matching joints of multi-views.
+To do so we had data: videos of subjects doing different movements
+OP2DTXT, containing text files of 25 joints on each sequences of each subject, this is the format of every line</p>
+<p><img src="/MyBlog/khoa1.jpg" alt="image info"></p>
+<p>X and y are horizontal and vertical pxiels and r is the reliability score</p>
+<pre><code>        OP3DTXT, containing text files of the coordinates output of first 15 joints after 
+</code></pre>
+<p>triangulation from multiviews of 2D joints</p>
+<p><img src="/MyBlog/khoa2.jpg" alt="image info"></p>
+<p>**Task 1: **Our first task consisted of drawing points stored on 2DTXT on the original video</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">numpy</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">np</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">cv2</span>
+
+
+<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">read</span>
+
+<span style="color:#a6e22e">fichier</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">open</span>(<span style="color:#e6db74">&#34;data/OP2DTXT/Lea/burpees_1_0.0.txt&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>)
+<span style="color:#a6e22e">lines</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fichier</span>.<span style="color:#a6e22e">readlines</span>()
+<span style="color:#a6e22e">tab</span> <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">line</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">lines</span><span style="color:#f92672">:</span>
+    <span style="color:#a6e22e">points</span> <span style="color:#f92672">=</span> []
+    <span style="color:#a6e22e">z</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">line</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34; &#34;</span>)
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">range</span>(<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">len</span>(<span style="color:#a6e22e">z</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>)<span style="color:#f92672">:</span>
+        <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">float</span>(<span style="color:#a6e22e">z</span>[<span style="color:#a6e22e">i</span>])
+        <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">float</span>(<span style="color:#a6e22e">z</span>[<span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])
+        <span style="color:#a6e22e">points</span>.<span style="color:#a6e22e">append</span>([<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>])
+    <span style="color:#a6e22e">tab</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">points</span>)
+<span style="color:#a6e22e">fichier</span>.<span style="color:#a6e22e">close</span>()
+
+<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">draw</span>
+<span style="color:#a6e22e">cap</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">VideoCapture</span>(<span style="color:#e6db74">&#39;data/Videos/Lea/burpees_1_0.0.avi&#39;</span>)
+<span style="color:#a6e22e">frame_width</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">int</span>(<span style="color:#a6e22e">cap</span>.<span style="color:#a6e22e">get</span>(<span style="color:#ae81ff">3</span>))
+<span style="color:#a6e22e">frame_height</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">int</span>(<span style="color:#a6e22e">cap</span>.<span style="color:#a6e22e">get</span>(<span style="color:#ae81ff">4</span>))
+<span style="color:#a6e22e">size</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">frame_width</span>, <span style="color:#a6e22e">frame_height</span>)
+<span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">VideoWriter</span>(<span style="color:#e6db74">&#39;result/output.avi&#39;</span>, <span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">VideoWriter_fourcc</span>(<span style="color:#f92672">*</span><span style="color:#e6db74">&#39;MJPG&#39;</span>), <span style="color:#ae81ff">60</span>, <span style="color:#a6e22e">size</span>)
+<span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">True</span>)<span style="color:#f92672">:</span>
+    <span style="color:#a6e22e">ret</span>, <span style="color:#a6e22e">frame</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cap</span>.<span style="color:#a6e22e">read</span>()
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ret</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">True</span><span style="color:#f92672">:</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">points</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">tab</span>[<span style="color:#a6e22e">i</span>]<span style="color:#f92672">:</span>
+            <span style="color:#a6e22e">image</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">circle</span>(<span style="color:#a6e22e">frame</span>, (<span style="color:#66d9ef">int</span>(<span style="color:#a6e22e">points</span>[<span style="color:#ae81ff">0</span>]), <span style="color:#66d9ef">int</span>(<span style="color:#a6e22e">points</span>[<span style="color:#ae81ff">1</span>])), <span style="color:#a6e22e">radius</span><span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, <span style="color:#a6e22e">color</span><span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>), <span style="color:#a6e22e">thickness</span><span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>)
+        <span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">imshow</span>(<span style="color:#e6db74">&#39;Frame&#39;</span>, <span style="color:#a6e22e">image</span>)
+        <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">frame</span>)
+        <span style="color:#a6e22e">i</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">waitKey</span>(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFF</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">ord</span>(<span style="color:#e6db74">&#39;q&#39;</span>)<span style="color:#f92672">:</span>
+            <span style="color:#66d9ef">break</span>
+    <span style="color:#66d9ef">else</span><span style="color:#f92672">:</span>
+        <span style="color:#66d9ef">break</span>
+
+<span style="color:#a6e22e">cap</span>.<span style="color:#a6e22e">release</span>()
+<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">release</span>()
+
+<span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">destroyAllWindows</span>()
+
+</code></pre></div><p>First of all we read the file and extract all of the points, then we open the video file and thanks to the openCV library we draw the points we just read.</p>
+<p><img src="/MyBlog/khoa3.jpg" alt="image info"></p>
+<p><img src="/MyBlog/khoa4.jpg" alt="image info"></p>
+<p><strong>Task 2:</strong> Now we do the same with the 3DTXT file, in this task we had to project these coordinates on the frame of different camera frame.</p>
+<p>In this task the main issue was to determine the shifting matrix to shift the origin from view 0 to 1 and from 1 to 2</p>
+<p><img src="/MyBlog/khoa5.jpg" alt="image info"></p>
+<p><img src="/MyBlog/khoa6.jpg" alt="image info"></p>
+<p>After that we load the 2D pose on view 2, the 3D pose after triangulation and finally we load the video capture on view 2</p>
+<p><img src="/MyBlog/khoa7.jpg" alt="image info"></p>
+<p>Then we can project on view 2:</p>
+<p><img src="/MyBlog/khoa8.jpg" alt="image info"></p>
+<p>We draw as the same way we did on task 1.</p>
+<p>This is the full code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">numpy</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">np</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">cv2</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">os</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">sys</span>
+<span style="color:#a6e22e">from</span> <span style="color:#a6e22e">tools2D3D</span> <span style="color:#66d9ef">import</span> <span style="color:#a6e22e">DB2D3DManager</span>
+
+
+<span style="color:#a6e22e">def</span> <span style="color:#a6e22e">originShift</span>(<span style="color:#a6e22e">point</span>,<span style="color:#a6e22e">P</span>)<span style="color:#f92672">:</span>
+    <span style="color:#a6e22e">point</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">point</span>, <span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">array</span>([<span style="color:#ae81ff">1</span>]))
+    <span style="color:#a6e22e">point</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">dot</span>(<span style="color:#a6e22e">P</span>,<span style="color:#a6e22e">point</span>)
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">point</span>
+
+<span style="color:#a6e22e">dbMan</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">DB2D3DManager</span>(<span style="color:#e6db74">&#34;./data&#34;</span>)
+<span style="color:#a6e22e">subject</span> <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Lea&#34;</span>
+<span style="color:#a6e22e">action</span> <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;soulevedeterre_1_0&#34;</span>
+<span style="color:#a6e22e">nbJ</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span> <span style="color:#960050;background-color:#1e0010">#</span>Number <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">joints</span> <span style="color:#a6e22e">after</span> <span style="color:#a6e22e">triangulation</span>
+<span style="color:#a6e22e">P01</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dbMan</span>.<span style="color:#a6e22e">loadExtrinsic</span>(<span style="color:#ae81ff">0</span>) <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">origin</span> <span style="color:#a6e22e">shift</span> <span style="color:#a6e22e">matrix</span> <span style="color:#a6e22e">from</span> <span style="color:#ae81ff">0</span> <span style="color:#a6e22e">to</span> <span style="color:#ae81ff">1</span>
+<span style="color:#a6e22e">P12</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dbMan</span>.<span style="color:#a6e22e">loadExtrinsic</span>(<span style="color:#ae81ff">1</span>) <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">origin</span> <span style="color:#a6e22e">shift</span> <span style="color:#a6e22e">matrix</span> <span style="color:#a6e22e">from</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">to</span> <span style="color:#ae81ff">2</span>
+<span style="color:#a6e22e">lst_f</span>,<span style="color:#a6e22e">lst_c</span>  <span style="color:#f92672">=</span> <span style="color:#a6e22e">dbMan</span>.<span style="color:#a6e22e">loadIntrinsic</span>() <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Loading</span> <span style="color:#a6e22e">intrinsic</span> <span style="color:#a6e22e">parameter</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">all</span> <span style="color:#a6e22e">cameras</span>
+<span style="color:#a6e22e">pose2Dv2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dbMan</span>.<span style="color:#a6e22e">load2DTXT</span>(<span style="color:#a6e22e">subject</span>,<span style="color:#a6e22e">action</span>,<span style="color:#ae81ff">2</span>) <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Load</span> <span style="color:#a6e22e">the</span> <span style="color:#ae81ff">2</span><span style="color:#a6e22e">D</span> <span style="color:#a6e22e">pose</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">view</span> <span style="color:#ae81ff">2</span>
+<span style="color:#a6e22e">pose3Dv0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dbMan</span>.<span style="color:#a6e22e">load3DTXT</span>(<span style="color:#a6e22e">subject</span>,<span style="color:#a6e22e">action</span>) <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Load</span> <span style="color:#a6e22e">the</span> <span style="color:#ae81ff">3</span><span style="color:#a6e22e">D</span> <span style="color:#a6e22e">pose</span> <span style="color:#a6e22e">after</span> <span style="color:#a6e22e">triangulation</span>, <span style="color:#a6e22e">reference</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">view</span> <span style="color:#ae81ff">0</span>
+<span style="color:#a6e22e">cap</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dbMan</span>.<span style="color:#a6e22e">loadVideoCapture</span>(<span style="color:#a6e22e">subject</span>,<span style="color:#a6e22e">action</span>,<span style="color:#ae81ff">2</span>) <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Load</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">video</span> <span style="color:#a6e22e">capture</span> <span style="color:#a6e22e">object</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">view</span> <span style="color:#ae81ff">2</span>
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">cap</span><span style="color:#f92672">==</span><span style="color:#a6e22e">None</span><span style="color:#f92672">:</span>
+    <span style="color:#a6e22e">exit</span>()
+<span style="color:#a6e22e">nF</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">int</span>(<span style="color:#a6e22e">cap</span>.<span style="color:#a6e22e">get</span>(<span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">CAP_PROP_FRAME_COUNT</span>)) 
+<span style="color:#a6e22e">vidWriter</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">VideoWriter</span>(<span style="color:#e6db74">&#34;demo2.avi&#34;</span>,<span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">VideoWriter_fourcc</span>(<span style="color:#e6db74">&#39;M&#39;</span>,<span style="color:#e6db74">&#39;J&#39;</span>,<span style="color:#e6db74">&#39;P&#39;</span>,<span style="color:#e6db74">&#39;G&#39;</span>), <span style="color:#ae81ff">30</span>, (<span style="color:#ae81ff">640</span>,<span style="color:#ae81ff">480</span>)) <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">VideoWriter</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">output</span>
+<span style="color:#a6e22e">assert</span>(<span style="color:#a6e22e">pose2Dv2</span>.<span style="color:#a6e22e">shape</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span><span style="color:#a6e22e">pose3Dv0</span>.<span style="color:#a6e22e">shape</span>[<span style="color:#ae81ff">0</span>])
+<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">assert</span>(<span style="color:#a6e22e">nF</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">pose2Dv2</span>.<span style="color:#a6e22e">shape</span>[<span style="color:#ae81ff">0</span>])
+<span style="color:#a6e22e">step</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">255.0</span><span style="color:#f92672">/</span>(<span style="color:#a6e22e">nbJ</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) 
+
+<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">range</span>(<span style="color:#ae81ff">351</span>)<span style="color:#f92672">:</span>
+    <span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">stdout</span>.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">&#39;\r&#39;</span>)
+    <span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">stdout</span>.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">&#34;{}/{}&#34;</span>.<span style="color:#a6e22e">format</span>(<span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">nF</span>))
+    <span style="color:#a6e22e">cap</span>.<span style="color:#a6e22e">set</span>(<span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">CAP_PROP_POS_FRAMES</span>,<span style="color:#a6e22e">i</span>)
+    <span style="color:#a6e22e">ret</span>, <span style="color:#a6e22e">frame</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cap</span>.<span style="color:#a6e22e">read</span>() <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">Retrieve</span> <span style="color:#a6e22e">frame</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">video</span> <span style="color:#a6e22e">capture</span>
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">not</span> <span style="color:#a6e22e">ret</span>)<span style="color:#f92672">:</span>
+        <span style="color:#a6e22e">exit</span>()
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">range</span>(<span style="color:#a6e22e">nbJ</span>)<span style="color:#f92672">:</span>
+        <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Retrieve</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">X</span>,<span style="color:#a6e22e">Y</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">OpenPose</span>
+        <span style="color:#a6e22e">X</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">int</span>(<span style="color:#a6e22e">pose2Dv2</span>[<span style="color:#a6e22e">i</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span><span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">0</span>]) 
+        <span style="color:#a6e22e">Y</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">int</span>(<span style="color:#a6e22e">pose2Dv2</span>[<span style="color:#a6e22e">i</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span><span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
+
+        <span style="color:#a6e22e">pos3Dv0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pose3Dv0</span>[<span style="color:#a6e22e">i</span>,<span style="color:#ae81ff">4</span><span style="color:#f92672">*</span><span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span><span style="color:#f92672">*</span><span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">4</span>] <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Retrieve</span> <span style="color:#a6e22e">the</span> <span style="color:#ae81ff">3</span><span style="color:#a6e22e">D</span> <span style="color:#a6e22e">point</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">view</span> <span style="color:#ae81ff">0</span> 
+        <span style="color:#a6e22e">pos3Dv1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">originShift</span>(<span style="color:#a6e22e">pos3Dv0</span>,<span style="color:#a6e22e">P01</span>) <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Shifting</span> <span style="color:#a6e22e">origin</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">view</span> <span style="color:#ae81ff">0</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">view</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">of</span> <span style="color:#ae81ff">3</span><span style="color:#a6e22e">D</span> <span style="color:#a6e22e">point</span> 
+        <span style="color:#a6e22e">pos3Dv2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">originShift</span>(<span style="color:#a6e22e">pos3Dv1</span>,<span style="color:#a6e22e">P12</span>) <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Shifting</span> <span style="color:#a6e22e">origin</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">view</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">view</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">of</span> <span style="color:#ae81ff">3</span><span style="color:#a6e22e">D</span> <span style="color:#a6e22e">point</span> 
+        <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Note</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">make</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">direct</span> <span style="color:#a6e22e">shifting</span> <span style="color:#a6e22e">matrix</span> <span style="color:#a6e22e">from</span> <span style="color:#ae81ff">0</span> <span style="color:#a6e22e">to</span> <span style="color:#ae81ff">2</span> <span style="color:#a6e22e">by</span> <span style="color:#a6e22e">transforming</span> 
+        <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">the</span> <span style="color:#ae81ff">3</span><span style="color:#a6e22e">x4</span> <span style="color:#a6e22e">shifting</span> <span style="color:#a6e22e">matrix</span> <span style="color:#a6e22e">P01</span>,<span style="color:#a6e22e">P12</span> <span style="color:#a6e22e">into</span> <span style="color:#a6e22e">homogenous</span> <span style="color:#a6e22e">matrix</span> <span style="color:#ae81ff">4</span><span style="color:#a6e22e">x4</span> <span style="color:#a6e22e">by</span> <span style="color:#a6e22e">adding</span> <span style="color:#a6e22e">row</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">bottom</span> [<span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span>]
+        <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Then</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">P02homo</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">P12homo</span><span style="color:#f92672">*</span><span style="color:#a6e22e">P01homo</span>
+        <span style="color:#a6e22e">pos3Dv2</span> <span style="color:#f92672">=</span><span style="color:#a6e22e">pos3Dv2</span>[<span style="color:#f92672">:</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">/</span><span style="color:#a6e22e">pos3Dv2</span>[<span style="color:#ae81ff">2</span>] <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Normalize</span> <span style="color:#ae81ff">3</span><span style="color:#a6e22e">D</span> <span style="color:#a6e22e">coordinate</span>
+        <span style="color:#a6e22e">pos2Dx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">lst_f</span>[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">*</span><span style="color:#a6e22e">pos3Dv2</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">lst_c</span>[<span style="color:#ae81ff">2</span>] <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Project</span> <span style="color:#a6e22e">into</span> <span style="color:#ae81ff">2</span><span style="color:#a6e22e">D</span> <span style="color:#a6e22e">point</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">view2</span>, <span style="color:#a6e22e">using</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">intrinsic</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">cam</span> <span style="color:#ae81ff">2</span>
+
+        <span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">circle</span>(<span style="color:#a6e22e">frame</span>,(<span style="color:#a6e22e">X</span>,<span style="color:#a6e22e">Y</span>),<span style="color:#ae81ff">8</span>,(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span><span style="color:#f92672">-</span><span style="color:#a6e22e">j</span><span style="color:#f92672">*</span><span style="color:#a6e22e">step</span>,<span style="color:#a6e22e">j</span><span style="color:#f92672">*</span><span style="color:#a6e22e">step</span>),<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Draw</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">points</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">OpenPose</span> <span style="color:#a6e22e">by</span> <span style="color:#a6e22e">big</span> <span style="color:#a6e22e">color</span> <span style="color:#a6e22e">circle</span>
+        <span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">circle</span>(<span style="color:#a6e22e">frame</span>,<span style="color:#a6e22e">tuple</span>(<span style="color:#a6e22e">pos2Dx</span>.<span style="color:#a6e22e">astype</span>(<span style="color:#e6db74">&#39;int&#39;</span>)),<span style="color:#ae81ff">4</span>,(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">255</span>),<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Draw</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">projected</span> <span style="color:#a6e22e">point</span> <span style="color:#a6e22e">after</span> <span style="color:#a6e22e">origin</span> <span style="color:#a6e22e">shifting</span> <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">smaller</span> <span style="color:#a6e22e">red</span> <span style="color:#a6e22e">circle</span>
+        
+    <span style="color:#a6e22e">vidWriter</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">frame</span>)
+<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;&#34;</span>)
+<span style="color:#a6e22e">cap</span>.<span style="color:#a6e22e">release</span>() 
+<span style="color:#a6e22e">vidWriter</span>.<span style="color:#a6e22e">release</span>() 
+</code></pre></div>
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="https://guillaumeg9153.github.io/MyBlog/posts/lab_qlearning/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Lab Reinforcement learning</span>
+            </a>
+        </span>
+        
+        
+        <span class="button next">
+            <a href="https://guillaumeg9153.github.io/MyBlog/posts/blender/">
+                <span class="button__text">Labs on blender</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="https://guillaumeg9153.github.io/MyBlog/assets/main.js"></script>
+<script src="https://guillaumeg9153.github.io/MyBlog/assets/prism.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

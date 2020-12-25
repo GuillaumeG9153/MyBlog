@@ -69,6 +69,16 @@ Results: it returns the value function at the current for the action 0 on the le
     </item>
     
     <item>
+      <title>lab: 3D reconstruction</title>
+      <link>https://guillaumeg9153.github.io/MyBlog/posts/lab3d/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://guillaumeg9153.github.io/MyBlog/posts/lab3d/</guid>
+      <description>The goal of this lab was to implement a 3D reconstruction from multi-views of human pose. We had to reconstruct the 3D skeleton of a person from the matching joints of multi-views. To do so we had data: videos of subjects doing different movements OP2DTXT, containing text files of 25 joints on each sequences of each subject, this is the format of every line
+X and y are horizontal and vertical pxiels and r is the reliability score</description>
+    </item>
+    
+    <item>
       <title>Labs on blender</title>
       <link>https://guillaumeg9153.github.io/MyBlog/posts/blender/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
